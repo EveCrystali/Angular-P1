@@ -1,0 +1,6 @@
+<p>note works!</p>
+@for(note of notes; track note.id)
+{
+    <h2>{{note.title}}</h2>
+    <p class="noteBody" [class.Big]="note.isBig" (click)="note.show()"> {{note.body}}</p>
+}
