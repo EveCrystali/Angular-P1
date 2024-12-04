@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent} from './header/header.component';
-import { FormsComponent } from './forms/forms.component';
 import { AddNoteComponent } from "./add-note/add-note.component";
 
 @Component({
