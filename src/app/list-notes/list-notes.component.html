@@ -1,0 +1,29 @@
+<div class="notes-container">
+    <header class="notes-header">
+        <h1>Mes Notes</h1>
+        <button class="add-button" routerLink="/note">+ Nouvelle Note</button>
+    </header>
+
+    @if (notes.length === 0) {
+    <div class="empty-state">
+        <p>Aucune note pour le moment</p>
+    </div>
+    } @else {
+    <div class="notes-grid">
+        @for(note of notes; track note.id) {
+        <div class="note-card">
+            <a [routerLink]="['/note', note.id]">
+                <div class="note-content">
+                    <h2 class="note-title">{{note.title}}</h2>
+                    <p class="note-text">{{note.corpus}}</p>
+                </div>
+            </a>
+
+            <div class="note-footer">
+                <span class="note-date">{{ note.date | date:'dd/MM/yyyy HH:mm' }}</span>
+            </div>
+        </div>
+        }
+    </div>
+    }
+</div>

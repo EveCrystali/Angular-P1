@@ -1,18 +1,5 @@
 <h1>Notes</h1>
 
-<div class="notes">
-    @for(addNote of addNotes; track addNote.id)
-    {
-    <div class="note">
-        <h2>{{addNote.title}}</h2>
-        <p>{{addNote.corpus}}</p>
-        <div class="time">
-            {{ addNote.date | date:'dd/MM HH:mm' }}
-        </div>
-    </div>
-    }
-</div>
-
 <form [formGroup]="addNoteForm" (ngSubmit)="Submit()">
     <h2>Ajouter une note</h2>
     <div>
@@ -22,6 +9,6 @@
         <label for="note-corpus">Corps:
             <input id="note-corpus" type="text" formControlName="corpus" />
         </label>
-        <input type="submit" value="Ajouter" />
+        <input type="submit" value="Ajouter" (click)="Submit()"/>
     </div>
 </form>

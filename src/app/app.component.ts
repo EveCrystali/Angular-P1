@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent} from './header/header.component';
 import { AddNoteComponent } from "./add-note/add-note.component";
+import { HomeComponent } from "./home/home.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, AddNoteComponent],
+  imports: [RouterOutlet, HeaderComponent, AddNoteComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

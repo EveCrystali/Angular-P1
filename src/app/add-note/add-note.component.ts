@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { addNote } from './add-note';
@@ -29,9 +30,16 @@ export class AddNoteComponent {
       );
 
       newAddNote.addNote();
+
+      this.navigate();
+
     }
     else{
       alert('The addNote is not correct')
     }
+  };
+  router = inject(Router);
+  navigate(){
+    this.router.navigateByUrl('/listNotes')
   };
 }

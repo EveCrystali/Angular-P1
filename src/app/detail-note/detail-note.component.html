@@ -1,0 +1,37 @@
+<div class="note-detail-container">
+    <div class="note-detail" *ngIf="note">
+        <div class="note-header">
+            <h1>{{note.title}}</h1>
+            <div class="note-actions">
+                <button class="back-btn" routerLink="/listNotes">
+                    <span>←</span> Retour
+                </button>
+            </div>
+        </div>
+
+        <div class="note-body">
+            <p class="note-text">{{note.corpus}}</p>
+        </div>
+
+        <div class="note-meta">
+            <span class="note-date">
+                <span class="label">Créée le :</span>
+                {{ note.date | date:'dd MMMM yyyy à HH:mm' }}
+            </span>
+        </div>
+
+        <div class="note-actions-footer">
+            <button class="delete-btn" (click)="deleteNote(note.id)">
+                <span>🗑️</span> Supprimer cette note
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="!note" class="not-found">
+        <h2>Note introuvable</h2>
+        <p>La note que vous recherchez n'existe pas ou a été supprimée.</p>
+        <button class="back-btn" routerLink="/listNotes">
+            <span>←</span> Retour à la liste
+        </button>
+    </div>
+</div>

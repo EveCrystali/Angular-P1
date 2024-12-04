@@ -1,8 +1,22 @@
-<nav>
-    <a routerLink="/home">
-        <h1>{{AppName}}<img [class]="logoClass" [src]="logoAppUrl" (click)="testBig()" [class.Big]="isBig"></h1>
-    </a>
-    <a routerLink="/contacts">
-        Contact
-    </a>
-</nav>
+<header class="header">
+    <nav class="nav-container">
+        <div class="nav-left">
+            <a routerLink="/home" class="brand">
+                <h1>{{AppName}}</h1>
+            </a>
+        </div>
+
+        <div class="nav-center">
+            <a routerLink="/home" class="nav-link" routerLinkActive="active">Accueil</a>
+            <a routerLink="/listNotes" class="nav-link" routerLinkActive="active">Notes</a>
+            <a routerLink="/contacts" class="nav-link" routerLinkActive="active">Contact</a>
+        </div>
+
+        <div class="nav-right">
+            <a routerLink="/note" class="add-note-btn">
+                <img [class]="logoClass" [src]="logoAppUrl" (click)="testBig()" [class.Big]="isBig">
+                <span>Nouvelle Note</span>
+            </a>
+        </div>
+    </nav>
+</header>
