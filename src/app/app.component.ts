@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent} from './header/header.component';
-import { LogoAngularComponent } from './logo-angular/logo-angular.component';
-import { NotesComponent } from './note/notes.component';
 import { FormsComponent } from './forms/forms.component';
+import { AddNoteComponent } from "./add-note/add-note.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, LogoAngularComponent, NotesComponent, FormsComponent],
+  imports: [RouterOutlet, HeaderComponent, AddNoteComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
