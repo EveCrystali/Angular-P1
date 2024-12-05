@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Note } from '../add-note/add-note';
 import { AddNoteComponent } from '../add-note/add-note.component';
+import { NoteService } from '../services/note.service';
 
 @Component({
   selector: 'app-detail-note',
@@ -12,36 +13,30 @@ import { AddNoteComponent } from '../add-note/add-note.component';
   styleUrl: './detail-note.component.css'
 })
 export class DetailNoteComponent {
-  route = inject(ActivatedRoute);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  private noteService = inject(NoteService);
+  
   note?: Note;
-  notes: Note[] = [];
 
   constructor() {
-    // Récupérer l'ID depuis l'URL
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    
-    // Récupérer les notes du localStorage
-    const savedNotes = localStorage.getItem('savedNotes');
-    if (savedNotes) {
-      const notes: Note[] = JSON.parse(savedNotes);
-      // Trouver la note correspondante
-      this.note = notes.find(note => note.id === id);
-    }
+    this.route.paramMap.subscribe(params => {
+      const id = Number(params.get('id'));
+      this.note = this.noteService.getNote(id);
+      
+      if (!this.note) {
+        console.error(`Note with id ${id} not found`);
+        this.navigate();
+      }
+    });
   }
 
   deleteNote(id: number) {
-    const savedNotes = localStorage.getItem('savedNotes');
-    if (savedNotes) {
-      const notes: Note[] = JSON.parse(savedNotes);
-      const updatedNotes = notes.filter(note => note.id !== id);
-      localStorage.setItem('savedNotes', JSON.stringify(updatedNotes));
-    }
+    this.noteService.deleteNote(id);
     this.navigate();
   }
 
-  router = inject(Router);
-  navigate(){
-    this.router.navigateByUrl('/listNotes')
-  };
-  
+  navigate() {
+    this.router.navigateByUrl('/listNotes');
+  }
 }

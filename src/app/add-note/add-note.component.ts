@@ -15,31 +15,32 @@ import { NoteService } from '../services/note.service';
   standalone: true
 })
 export class AddNoteComponent {
-  notes: Note [] = [];
   noteForm = new FormGroup({
     title: new FormControl(''),
     corpus: new FormControl('', Validators.required)
   });
 
-  noteService = new NoteService ;
+  private noteService = inject(NoteService);
 
   Submit() {
     if (this.noteForm.valid) {
+      const existingNotes = this.noteService.getNotes();
+      const maxId = existingNotes.reduce((max, note) => Math.max(max, note.id), 0);
+      
       const newNote = new Note(
-        this.notes.length + 1,
+        maxId + 1,
         this.noteForm.value.title || '',
         this.noteForm.value.corpus || ''
       );
 
       this.noteService.addNote(newNote);
-
       this.navigate();
-
     }
-    else{
+    else {
       alert('The addNote is not correct')
     }
   };
+
   router = inject(Router);
   navigate(){
     this.router.navigateByUrl('/listNotes')
