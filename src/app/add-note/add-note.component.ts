@@ -3,9 +3,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { addNote } from './add-note';
-import { AddNotes } from './add-note';
+import { Note } from './add-note';
 import { DatePipe } from '@angular/common';
+import { NoteService } from '../services/note.service';
 
 @Component({
   selector: 'app-add-note',
@@ -15,21 +15,23 @@ import { DatePipe } from '@angular/common';
   standalone: true
 })
 export class AddNoteComponent {
-  addNotes = AddNotes;
-  addNoteForm = new FormGroup({
+  notes: Note [] = [];
+  noteForm = new FormGroup({
     title: new FormControl(''),
     corpus: new FormControl('', Validators.required)
   });
 
+  noteService = new NoteService ;
+
   Submit() {
-    if (this.addNoteForm.valid) {
-      const newAddNote = new addNote(
-        this.addNotes.length + 1,
-        this.addNoteForm.value.title || '',
-        this.addNoteForm.value.corpus || ''
+    if (this.noteForm.valid) {
+      const newNote = new Note(
+        this.notes.length + 1,
+        this.noteForm.value.title || '',
+        this.noteForm.value.corpus || ''
       );
 
-      newAddNote.addNote();
+      this.noteService.addNote(newNote);
 
       this.navigate();
 

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { iaddnote } from '../add-note/iadd-note';
+import { Note } from '../add-note/add-note';
 import { AddNoteComponent } from '../add-note/add-note.component';
+import { NoteService } from '../services/note.service';
 
 
 @Component({
@@ -13,14 +14,10 @@ import { AddNoteComponent } from '../add-note/add-note.component';
   styleUrl: './list-notes.component.css'
 })
 export class ListNotesComponent {
-  notes: iaddnote[] = [];
 
-  constructor() {
-    const savedNotes = localStorage.getItem('savedNotes');
-    if (savedNotes) {
-      this.notes = JSON.parse(savedNotes);
-    }
-  }
+  noteService = new NoteService;
+
+  notes = this.noteService.getNotes();
 
   deleteNote(id: number) {
     this.notes = this.notes.filter(note => note.id !== id);
