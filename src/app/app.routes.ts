@@ -5,6 +5,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AddNoteComponent } from './add-note/add-note.component';
 import { ListNotesComponent } from './list-notes/list-notes.component';
 import { DetailNoteComponent } from './detail-note/detail-note.component';
+import { EditNoteComponent } from './edit-note/edit-note.component';
+
 
 export const routes: Routes = [
   { path: '', title: 'Home', component: HomeComponent },
@@ -13,5 +15,6 @@ export const routes: Routes = [
   { path: 'note', title: 'Note', component: AddNoteComponent },
   { path: 'note/:id', title: 'Details', component: DetailNoteComponent },
   { path: 'listNotes', title: 'Notes', component: ListNotesComponent },
+  { path: 'editNote/:id', title: 'Edit Note', component: EditNoteComponent },
   { path: '**', title: 'Page Not Found', component: NotFoundComponent },
 ];

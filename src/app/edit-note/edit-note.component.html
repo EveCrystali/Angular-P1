@@ -1,0 +1,12 @@
+<div *ngIf="note">
+    <form [formGroup]="noteForm" (ngSubmit)="Submit()">
+        <label for="note-title">Titre:</label>
+        <input id="note-title" type="text" formControlName="title" />
+        <label for="note-corpus">Corps:</label>
+        <textarea id="note-corpus" formControlName="corpus"></textarea>
+        <input type="submit" value="Valider les modifications" />
+    </form>
+</div>
+<div *ngIf="!note">
+    <p>Note non trouvée.</p>
+</div>

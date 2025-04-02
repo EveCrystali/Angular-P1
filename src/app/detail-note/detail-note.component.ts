@@ -36,6 +36,11 @@ export class DetailNoteComponent {
     this.navigate();
   }
 
+  editNote(note: Note) {
+    this.noteService.editNotes(note);
+    this.router.navigateByUrl(`/editNote/${note.id}`);
+  }
+
   navigate() {
     this.router.navigateByUrl('/listNotes');
   }

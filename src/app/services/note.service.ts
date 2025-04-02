@@ -43,4 +43,14 @@ export class NoteService {
             localStorage.setItem('savedNotes', JSON.stringify(this.notes));
         }
     }
+
+    editNotes(note: Note) {
+        const savedNotesFile = localStorage.getItem('savedNotes');
+        if (savedNotesFile != null) {
+            this.notes = this.notes.map(n => n.id === note.id ? note : n);
+            localStorage.setItem('savedNotes', JSON.stringify(this.notes));
+        }
+
+    }
+    
 }

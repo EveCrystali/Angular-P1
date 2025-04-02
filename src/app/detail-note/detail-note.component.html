@@ -8,7 +8,6 @@
                 </button>
             </div>
         </div>
-
         <div class="note-body">
             <p class="note-text">{{note.corpus}}</p>
         </div>
@@ -23,6 +22,9 @@
         <div class="note-actions-footer">
             <button class="delete-btn" (click)="deleteNote(note.id)">
                 <span>🗑️</span> Supprimer cette note
+            </button>
+            <button classe="edit-btn" (click)="editNote(note)">
+                <span>✏️</span> Modifier cette note
             </button>
         </div>
     </div>
